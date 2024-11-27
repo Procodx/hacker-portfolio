@@ -1,0 +1,531 @@
+<html>
+
+<head>
+  <base href="https://cdn.staticaly.com/" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Add Bootstrap Icons CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <title>Security Researcher Portfolio</title>
+  <style>
+    :root {
+      --primary: #0a0a0a;
+      --secondary: #00ff00;
+      --accent: #ff3e3e;
+      --text: #ffffff;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Courier New', monospace;
+      background: var(--primary);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .terminal-header {
+      background: #000;
+      padding: 2rem;
+      position: relative;
+      border-bottom: 2px solid var(--secondary);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .terminal-text {
+      overflow: hidden;
+      white-space: nowrap;
+      margin: 0;
+      letter-spacing: 2px;
+      animation: typing 3.5s steps(40, end);
+    }
+
+    .terminal-header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+    }
+
+
+    .name {
+      font-size: 0.8rem;
+      color: var(--secondary);
+      text-align: right;
+      letter-spacing: 1px;
+    }
+
+    #glitch-text {
+      font-size: 1rem;
+      color: var(--secondary);
+      text-align: right;
+      letter-spacing: 2px;
+      font-family: 'Courier New', Courier, monospace;
+      white-space: nowrap;
+    }
+
+
+
+    @keyframes typing {
+      from {
+        width: 0
+      }
+
+      to {
+        width: 100%
+      }
+    }
+
+    .matrix-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.1;
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    .nav {
+      background: rgba(0, 0, 0, 0.8);
+      padding: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+      margin: 0;
+      padding: 0;
+      overflow-x: auto;
+      /* Makes the list horizontally scrollable */
+      white-space: nowrap;
+      /* Prevents the items from wrapping to the next line */
+    }
+
+    .nav a {
+      color: var(--secondary);
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    .nav a:hover {
+      color: var(--accent);
+      text-shadow: 0 0 10px var(--accent);
+    }
+
+
+    .nav-button {
+      width: 150px;
+      height: 50px;
+      background-color: #125e04be;
+      color: white;
+      border: none;
+      padding: 0.5rem;
+      font-size: 23px;
+      cursor: pointer;
+      border-radius: 50%;
+      transition: background-color 0.3s, box-shadow 0.3s;
+    }
+
+    .nav-button:hover {
+      background-color: darkgreen;
+      /* Darker green on hover */
+    }
+
+    .left {
+      left: 10px;
+    }
+
+    .right {
+      right: 10px;
+    }
+
+    /* Show buttons on mobile and hide on larger screens */
+    @media (max-width: 768px) {
+      .nav-button {
+        display: block;
+      }
+
+      .nav-links {
+        padding: 0 50px;
+        /* Adds padding to ensure arrows are not over content */
+      }
+    }
+
+    /* Prevent horizontal scrolling on larger screens */
+    @media (min-width: 769px) {
+      .nav-links {
+        overflow-x: unset;
+      }
+
+      .nav-button {
+        display: none;
+        /* Hide the buttons on larger screens */
+      }
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .section {
+      margin: 4rem 0;
+      padding: 2rem;
+      background: rgba(0, 0, 0, 0.7);
+      border-left: 4px solid var(--secondary);
+    }
+
+    .skill-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+
+    .skill-item {
+      background: rgba(0, 255, 0, 0.1);
+      padding: 1rem;
+      border-radius: 4px;
+      transition: transform 0.3s;
+    }
+
+    .skill-item:hover {
+      transform: translateY(-5px);
+      background: rgba(0, 255, 0, 0.2);
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(272px, 1fr));
+      justify-content: center;
+      gap: 2rem;
+    }
+
+    .project-card {
+      background: rgba(0, 0, 0, 0.8);
+      padding: 1.5rem;
+      border-radius: 8px;
+      border: 1px solid var(--secondary);
+      transition: all 0.3s;
+    }
+
+    .project-card:hover {
+      transform: scale(1.02);
+      box-shadow: 0 0 20px rgba(0, 255, 0, 0.2);
+    }
+
+    .glow-text {
+      color: var(--secondary);
+      text-shadow: 0 0 10px var(--secondary);
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      background: var(--secondary);
+      color: var(--primary);
+      border-radius: 20px;
+      font-size: 0.8rem;
+      margin: 0.25rem;
+    }
+
+    /* #scrolling-text {
+  opacity: 1;
+  transform: translateX(0);
+  font-size: 1rem;
+} */
+
+    @keyframes initial-appearance {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes scrolling {
+      0% {
+        transform: translateX(100%);
+      }
+
+      100% {
+        transform: translateX(-100%);
+      }
+    }
+
+
+    @media (max-width: 768px) {
+      .header-container {
+        flex-direction: column-reverse;
+        /* Stack name above the title */
+        gap: 0.5rem;
+        /* Adjust spacing */
+      }
+
+      #scrolling-text {
+        animation: initial-appearance 2s ease-in-out forwards, scrolling 10s linear infinite;
+        animation-delay: 2s;
+        font-size: 1.5rem;
+      }
+
+      #glitch-text {
+        font-size: 1.5rem;
+        /* Adjust font size for smaller screens */
+        margin-bottom: 1rem;
+        /* Add space below the name */
+      }
+
+      .terminal-text {
+        font-size: 1.5rem;
+        overflow: visible;
+        /* Adjust font size for smaller screens */
+      }
+    }
+
+    @media (max-width: 480px) {
+
+      /* Target smaller devices like phones */
+      #glitch-text {
+        font-size: 1.2rem;
+        /* Further reduce font size */
+        letter-spacing: 0.5px;
+        /* Minimize spacing */
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="matrix-bg" id="matrixCanvas"></div>
+
+  <header class="terminal-header">
+    <div class="header-container">
+      <h1 class="terminal-text glow-text">./security_researcher</h1>
+      <h2 id="glitch-text">Gospel Chukwuwnso</h2>
+    </div>
+    <p class="terminal-text" id="scrolling-text">$ Penetration Testing | Security Research | Bug Bounty Hunter</p>
+  </header>
+
+
+
+
+  <nav class="nav">
+    <button class="nav-button left" onclick="scrollNav(-1)"><i class="bi bi-arrow-left"></i></button>
+    <ul class="nav-links">
+      <li><a href="https://github.com/cyb3rfortr3ss">Github</a></li>
+      <li><a href="https://hackerone.com/cyb3r43ress">HackerOne</a></li>
+      <li><a href="https://infiltrateinsight.blogspot.com/">Blog</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#certs">Certifications</a></li>
+    </ul>
+    <button class="nav-button right" onclick="scrollNav(1)"><i class="bi bi-arrow-right"></i></button>
+  </nav>
+
+  <div class="container">
+    <section id="skills" class="section">
+      <h2 class="glow-text">Technical Skills</h2>
+      <div class="skill-list">
+        <div class="skill-item">
+          <h3>Web Security Testing</h3>
+          <span class="badge">XSS</span>
+          <span class="badge">SQLi</span>
+          <span class="badge">CSRF</span>
+          <span class="badge">IDOR</span>
+        </div>
+        <div class="skill-item">
+          <h3>Tools & Frameworks</h3>
+          <span class="badge">Burp Suite</span>
+          <span class="badge">Metasploit</span>
+          <span class="badge">Nmap</span>
+          <span class="badge">OWASP ZAP</span>
+        </div>
+        <div class="skill-item">
+          <h3>Programming</h3>
+          <span class="badge">Python</span>
+          <span class="badge">JavaScript</span>
+          <span class="badge">Bash</span>
+          <span class="badge">Ruby</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="section">
+      <h2 class="glow-text">Featured Projects</h2>
+      <div class="project-grid">
+        <div class="project-card">
+          <h3>Custom Web Fuzzer</h3>
+          <p>Developed a specialized web fuzzing tool for discovering unknown endpoints and parameter vulnerabilities.
+          </p>
+          <span class="badge">Python</span>
+          <span class="badge">Web Security</span>
+        </div>
+        <div class="project-card">
+          <h3>Security Headers Analyzer</h3>
+          <p>Built an automated tool to analyze and report on security headers implementation across enterprise
+            applications.</p>
+          <span class="badge">JavaScript</span>
+          <span class="badge">Security Analysis</span>
+        </div>
+        <div class="project-card">
+          <h3>Vulnerability Scanner</h3>
+          <p>Created a custom vulnerability scanner focused on modern web application security issues.</p>
+          <span class="badge">Python</span>
+          <span class="badge">Security Testing</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="certs" class="section">
+      <h2 class="glow-text">Certifications</h2>
+      <div class="skill-list">
+        <div class="skill-item">
+          <h3>OSCP</h3>
+          <p>Offensive Security Certified Professional</p>
+        </div>
+        <div class="skill-item">
+          <h3>CEH</h3>
+          <p>Certified Ethical Hacker</p>
+        </div>
+        <div class="skill-item">
+          <h3>eWPT</h3>
+          <p>eLearnSecurity Web Application Penetration Tester</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    // Matrix rain effect
+    const canvas = document.createElement('canvas');
+    canvas.setAttribute('id', 'matrixCanvas');
+    document.querySelector('.matrix-bg').appendChild(canvas);
+    const ctx = canvas.getContext('2d');
+
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
+
+    const chars = 'ﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ01';
+    const charArray = chars.split('');
+    const fontSize = 14;
+    const columns = width / fontSize;
+    const glitchTextElement = document.getElementById("glitch-text");
+    const originalText = glitchTextElement.textContent; // Store the original text
+    const charset = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()";
+
+    function scrollNav(direction) {
+      const navLinks = document.querySelector('.nav-links');
+      const scrollAmount = direction * 200; // Change 200 to control how much it scrolls each time
+      navLinks.scrollBy({
+        left: scrollAmount,
+        behavior: 'smooth'
+      });
+    }
+
+    function glitchEffect() {
+      const iterations = 10; // Number of cycles to glitch
+      let currentIteration = 0;
+
+      const interval = setInterval(() => {
+        if (currentIteration < iterations) {
+          // Show random characters
+          glitchTextElement.textContent = Array.from(originalText)
+            .map(() => charset.charAt(Math.floor(Math.random() * charset.length)))
+            .join("");
+          currentIteration++;
+        } else {
+          // Reveal the original text one character at a time
+          let revealedText = originalText.slice(0, currentIteration - iterations);
+          let remainingGlitch = Array.from(originalText.slice(currentIteration - iterations))
+            .map(() => charset.charAt(Math.floor(Math.random() * charset.length)))
+            .join("");
+
+          glitchTextElement.textContent = revealedText + remainingGlitch;
+          currentIteration++;
+
+          if (currentIteration > originalText.length + iterations) {
+            clearInterval(interval);
+            setTimeout(glitchEffect, 2000); // Restart the effect after a delay
+          }
+        }
+      }, 100); // Speed of the glitch animation
+    }
+
+    glitchEffect();
+
+    const drops = [];
+    for (let i = 0; i < columns; i++) {
+      drops[i] = 1;
+    }
+
+    function draw() {
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+      ctx.fillRect(0, 0, width, height);
+
+      ctx.fillStyle = '#0F0';
+      ctx.font = fontSize + 'px monospace';
+
+      for (let i = 0; i < drops.length; i++) {
+        const text = charArray[Math.floor(Math.random() * charArray.length)];
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+        if (drops[i] * fontSize > height && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+        drops[i]++;
+      }
+    }
+
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    });
+
+    setInterval(draw, 35);
+
+    // Smooth scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+
+    // Add hover effects to project cards
+    document.querySelectorAll('.project-card').forEach(card => {
+      card.addEventListener('mouseover', () => {
+        card.style.borderColor = '#ff3e3e';
+      });
+      card.addEventListener('mouseout', () => {
+        card.style.borderColor = 'var(--secondary)';
+      });
+    });
+  </script>
+
+</body>
+
+</html>
