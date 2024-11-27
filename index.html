@@ -156,29 +156,6 @@
       right: 10px;
     }
 
-    /* Show buttons on mobile and hide on larger screens */
-    @media (max-width: 768px) {
-      .nav-button {
-        display: block;
-      }
-
-      .nav-links {
-        padding: 0 50px;
-        /* Adds padding to ensure arrows are not over content */
-      }
-    }
-
-    /* Prevent horizontal scrolling on larger screens */
-    @media (min-width: 769px) {
-      .nav-links {
-        overflow-x: unset;
-      }
-
-      .nav-button {
-        display: none;
-        /* Hide the buttons on larger screens */
-      }
-    }
 
     .container {
       max-width: 1200px;
@@ -284,9 +261,9 @@
       }
 
       #scrolling-text {
-        animation: initial-appearance 2s ease-in-out forwards, scrolling 10s linear infinite;
-        animation-delay: 2s;
-        font-size: 1.5rem;
+        font-size: 14px;
+        text-wrap: auto;
+        text-align: center;
       }
 
       #glitch-text {
@@ -297,9 +274,28 @@
       }
 
       .terminal-text {
-        font-size: 1.5rem;
-        overflow: visible;
-        /* Adjust font size for smaller screens */
+        font-size: 1rem;
+      }
+
+      .nav-button {
+        display: block;
+      }
+
+      .nav-links {
+        padding: 0 50px;
+        /* Adds padding to ensure arrows are not over content */
+      }
+    }
+
+    /* Prevent horizontal scrolling on larger screens */
+    @media (min-width: 769px) {
+      .nav-links {
+        overflow-x: unset;
+      }
+
+      .nav-button {
+        display: none;
+        /* Hide the buttons on larger screens */
       }
     }
 
